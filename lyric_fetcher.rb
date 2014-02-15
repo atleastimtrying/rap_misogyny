@@ -1,18 +1,18 @@
-require 'sinatra'
 require 'json'
 require 'rapgenius'
-class Misogynator
+
+class LyricFetcher
   def get_rating name
     @songs = get_songs(name)
     if @songs.any?
-      lyrics @songs
+      @lyrics = fetch_lyrics @songs
       { 
         rapper: @songs.first.artist.name,
         rapper_url: @songs.first.artist.url,
-        word_count: lyrics.length,
-        bitch_count: bitch_count(lyrics),
-        bastard_count: bastard_count(lyrics),
-        swear_count: swear_count(lyrics)
+        word_count: @lyrics.length,
+        bitch_count: bitch_count(@lyrics),
+        bastard_count: bastard_count(@lyrics),
+        swear_count: swear_count(@lyrics)
       }.to_json
     else
       'no rapper found'
@@ -35,29 +35,11 @@ private
     string.scan(/shit|fuck|cunt|arse|ass|wank|bastard|bitch|twat|bugger|bollocks/).length
   end
 
-  def lyrics songs
+  def fetch_lyrics songs
     songs.inject("") {|lyrics, song| lyrics + get_lyrics(song) }
   end
 
   def get_lyrics song
     song.lines.map(&:lyric).join
   end
-end
-
-m = Misogynator.new
-
-get '/' do
-  send_file 'index.html'
-end
-
-get '/script.js' do
-  send_file 'script.js'
-end
-
-get '/style.css' do
-  send_file 'style.css'
-end
-
-get '/rating.json' do
-  m.get_rating params[:name]
 end
