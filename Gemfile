@@ -1,0 +1,5 @@
+source 'https://rubygems.org'
+ruby '2.0.0'
+gem 'sinatra', :github => 'sinatra/sinatra'
+gem 'rapgenius', '~> 1.0.2'
+gem 'pry'
