@@ -31,9 +31,4 @@ describe "My Sinatra Application" do
     get '/rating.json?name=dskjfhgsjkhfsgd'
     last_response.body.should eq 'no rapper found'
   end
-
-  it "should respond to a real rapper" do
-    get '/rating.json?name=eminem'
-    last_response.body.should eq '{"rapper":"Eminem","rapper_url":"http://rapgenius.com/artists/Eminem","word_count":92291,"bitch_count":53,"bastard_count":0,"swear_count":312}'
-  end
 end
