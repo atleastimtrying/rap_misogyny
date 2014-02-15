@@ -12,14 +12,24 @@ window.rm.App = function(){
     var name = $('.rapper_name').val();
     if(present(name)){
       print_result('thinking...');
-      $.get('/rating.json', {name:name}, print_result);
+      $.getJSON('/rating.json', {name:name}, print_result);
     }else{
       print_result('please enter a name');
     }
   };
 
-  var print_result = function(message){
-    $('.result').html(message);
+  var print_result = function(result){
+    if(result.rapper){
+      message = '<p><a href="' + result.url + '" target="blank">' + result.rapper + '</a>';
+      message += ' has a misogyny rating of ' + misogyny_rating(result) + '</p>';
+      $('.result').html(message);
+    }else{
+      $('.result').html(result);
+    }
+  };
+
+  var misogyny_rating = function(message){
+    return (message.bitch_count / message.word_count);
   };
 
   var bindUI = function(){

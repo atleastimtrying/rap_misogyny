@@ -7,12 +7,12 @@ class LyricFetcher
     @songs = get_songs(name)
     if @songs.any?
       @lyrics = fetch_lyrics @songs
-      { 
+      ({ 
         rapper: @songs.first.artist.name,
-        rapper_url: @songs.first.artist.url,
+        url: @songs.first.artist.url,
         word_count: @lyrics.length,
         bitch_count: bitch_count(@lyrics)
-      }.to_json
+      }).to_json
     else
       'no rapper found'
     end
