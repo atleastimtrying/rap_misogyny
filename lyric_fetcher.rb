@@ -10,7 +10,7 @@ class LyricFetcher
       ({ 
         rapper: @songs.first.artist.name,
         url: @songs.first.artist.url,
-        word_count: @lyrics.downcase.scan([a-z]+).length,
+        word_count: @lyrics.downcase.scan(/[a-z]+/).length,
         bitch_count: bitch_count(@lyrics)
       }).to_json
     else

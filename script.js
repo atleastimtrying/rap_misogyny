@@ -29,7 +29,7 @@ window.rm.App = function(){
   };
 
   var misogyny_rating = function(message){
-    return (message.bitch_count / message.word_count);
+    return Math.round((message.bitch_count / message.word_count) * 10000)/10;
   };
 
   var bindUI = function(){
