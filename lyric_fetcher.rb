@@ -10,6 +10,7 @@ class LyricFetcher
       ({ 
         rapper: @songs.first.artist.name,
         url: @songs.first.artist.url,
+        lyrics: @lyrics,
         word_count: @lyrics.downcase.scan(/[a-z]+/).length,
         bitch_count: bitch_count(@lyrics)
       }).to_json
@@ -35,12 +36,8 @@ private
   end
 
   def get_lyrics song
-    lyrics = ""
-    song.lines.each do |line|
-      if is_feminine line.lyric
-        lyrics << line.lyric + " "
-      end
-    end
-    lyrics
+    song.lines.map(&:lyric).select {|lyric|
+      is_feminine lyric
+    }.join " "
   end
 end
