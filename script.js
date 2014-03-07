@@ -19,17 +19,13 @@ window.rm.App = function(){
   };
 
   var print_result = function(result){
-    if(result.rapper){
-      message = '<p><a href="' + result.url + '" target="blank">' + result.rapper + '</a>';
-      message += ' has a misogyny rating of ' + misogyny_rating(result) + '</p>';
+    if(result.name){
+      message = '<p><a href="' + result.url + '" target="blank">' + result.name + '</a>';
+      message += ' has a misogyny rating of ' + result.rating + '</p>';
       $('.result').html(message);
     }else{
       $('.result').html(result);
     }
-  };
-
-  var misogyny_rating = function(message){
-    return Math.round((message.bitch_count / message.word_count) * 10000)/10;
   };
 
   var bindUI = function(){

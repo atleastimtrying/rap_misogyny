@@ -8,13 +8,15 @@ class RapperData
     if @songs.any?
       @lyrics = fetch_lyrics @songs
       { 
-        rapper: @songs.first.artist.name,
+        name: @songs.first.artist.name,
         url: @songs.first.artist.url,
-        lyrics: @lyrics,
-        word_count: @lyrics.downcase.scan(/[a-z]+/).length,
-        bitch_count: bitch_count(@lyrics)
+        rating: self.rating(@lyrics)
       }
     end
+  end
+
+  def self.rating lyrics
+    sprintf "%.2f", (self.bitch_count(lyrics) * 1.0 / self.word_count(lyrics) * 1.0) * 10000
   end
 
   def self.get_songs name
@@ -23,6 +25,10 @@ class RapperData
 
   def self.bitch_count string
     string.scan(/\ bitch\ |\ ho\ |\ hoe\ |\ ho\'s\ |\ hoes\ /).length
+  end
+
+  def self.word_count string
+    string.downcase.scan(/[a-z]+/).length
   end
 
   def self.fetch_lyrics songs

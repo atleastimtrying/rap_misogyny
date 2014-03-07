@@ -14,7 +14,8 @@ def make_rapper name
   Rapper.create({
     name: rapper[:name],
     slug: slugify(rapper[:name]),
-    rating: rapper[:rating]
+    rating: rapper[:rating],
+    url: rapper[:url]
   })
 end
 
@@ -23,7 +24,7 @@ def get_rapper name
 end
 
 
-DataMapper.setup(:default, ENV['HEROKU_POSTGRESQL_WHITE_URL'] || ENV['LOCAL_URL'])
+DataMapper.setup(:default, ENV['HEROKU_POSTGRESQL_JADE_URL'] || ENV['LOCAL_URL'])
 
 class Rapper
   include DataMapper::Resource
@@ -31,6 +32,7 @@ class Rapper
   property :name, String
   property :slug, String
   property :rating, Float
+  property :url, String
 end
 
 DataMapper.finalize
