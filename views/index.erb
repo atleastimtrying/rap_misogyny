@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">    
+  <meta name="apple-touch-fullscreen" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes"> 
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="description" content="Name an MC and we'll tell you their misogyny score.">
+  <meta property="og:title" content="Name an MC and we'll tell you their misogyny score.">
+  <title>Rap Misogyny</title>
+  <script>window.rm = {};</script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="/script.js"></script>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+  <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+</head>
+<body>
+  <header>
+    <div class="wrapper">
+      <h1>Rap <span class="red-text">Misogyny</span></h1>
+      <h3>Name an MC and we'll tell you how much misogynistic language they use</h3>
+    </div>
+  </header>
+  <section>
+    <div class="wrapper">
+      <input type="text" class="rapper_name" placeholder="Enter artist name">
+      <a href="#" class="get_rating btn">get misogyny rating</a>
+      <div class="result"></div>
+    </div>
+  </section>
+  <section>
+    <div class="wrapper">
+      <h3>Rappers</h3>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Rating</th>
+        </tr>
+        <% rappers.each do |rapper| %>
+          <tr>
+            <td><%= rapper.name %></td>
+            <td><%= rapper.rating %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </section>
+  <section id="about_section">
+    <div class="wrapper">
+      <h2>About</h2>
+      <p>
+        We made this app to quantify the amount of misogynistic language used by  individual hip hop artists. Type in the name of an MC and we&rsquo;ll assess their lyrics based on what&rsquo;s on <a href="http://www.rapgenius.com">Rapgenius.com</a>. Having crunched the propotion of misogynistic language (including terms like bitch, ho, etc), we&rsquo;ll report it back to you in an easy-to-read score.
+      </p>
+      <p>
+        It&rsquo;s not an acid test, but it should provide a rough indicator of what to expect when you&rsquo;re listening to a new artist. We made it because there&rsquo;s an overwhelming quantity of sexist language in hip hop, and it can be disappointing to find out that a newly discovered gem is actually a misogynistic fool. Now you can use this app to spot the sexist MCs in advance. We hope you find it useful.
+      </p>
+    </div>
+  </section>
+  <footer>Made by <a href="http://andersfisher.com">Anders Fisher</a> and <a href="http://www.warpaint.me.uk/">Sarah Fisher</a>.</footer>
+</body>
+</html>
